@@ -12,6 +12,7 @@ public class ArrayAndStringProblems {
 	// For light testing/demonstration
 	public static void main(String[] args) {
 		//allUniqueChars()
+		
 		System.out.println("allUniqueChars (unique String): " 
 				+ allUniqueChars("abcdefghijklmnopqrstuvwxyz"));
 		System.out.println("allUniqueChars (not unique String): " 
@@ -24,6 +25,7 @@ public class ArrayAndStringProblems {
 		System.out.println();
 		
 		//isPermutation()
+		
 		System.out.println("isPermutation (anagram): " 
 				+ isPermutation("tccatt", "tatctc"));
 		System.out.println("isPermutation (not an anagram): " 
@@ -34,6 +36,7 @@ public class ArrayAndStringProblems {
 
 
 		//urlify()
+		
 		char[] url1 = {'J', 'o', 'h', 'n', ' ', 
 				'S', 'a', 'm', ' ', 
 				'D', 'o', 'e', 
@@ -62,6 +65,15 @@ public class ArrayAndStringProblems {
 				+ isPalindromePermutation("t ca ta c"));
 		System.out.println("isPalindromePermutation (not permutation of palindrome): " 
 				+ isPalindromePermutation("tccsfatace"));
+		System.out.println();
+		
+		//compress()
+		
+		System.out.println("compress (compression makes shorter string): " 
+				+ compress("aaaabbbccd"));
+		System.out.println("compress (compression makes longer string): " 
+				+ compress("abcd"));
+		
 	}
 	
 	/*
@@ -168,8 +180,8 @@ public class ArrayAndStringProblems {
 	 * 1) In order to be a palindrome the counts for each char except one has to
 	 * be even
 	 * 2) Sorting the String first would allow for looping over the String and
-	 * keeping track of different char counts in order to flag for multiple odds,
-	 * but sorting bottlenecks the task as O(N log N)
+	 * keeping track of different char counts in order to flag for multiple odds
+	 * without using more space, but sorting bottlenecks the task as O(N log N)
 	 * 3) A HashMap would be great for tracking char counts and brings runtime
 	 * down to O(N)
 	 */
@@ -200,4 +212,41 @@ public class ArrayAndStringProblems {
 		return true;
 	}
 	
+	/*
+	 * Goal: Compress a String so that any consecutive chars are not shown,
+	 * and every different character is followed by the count of consecutive chars,
+	 * but return the original String if it's shorter than the compressed one
+	 * Notes on thought process:
+	 * 1) Should be easy to accomplish by just looping through String and
+	 * tracking counts along the way
+	 * 2) Using a StringBuilder can keep it to O(N) time, normal String
+	 * concatenation would require a lot of repeated copying 
+	 */
+	
+	public static String compress(String input) {
+		StringBuilder result = new StringBuilder();
+		
+		for (int i = 0; i < input.length(); i++) {
+			result.append(input.charAt(i));
+			
+			int repetitions = 1;
+			boolean repeated = true;
+			
+			while (i + repetitions < input.length() && repeated) {
+				if (input.charAt(i + repetitions) == input.charAt(i)) {
+					repetitions++;
+				} else {
+					repeated = false;
+				}
+			}
+			
+			result.append(repetitions);
+			i += repetitions - 1;
+		}
+		
+		if (result.toString().length() >= input.length()) return input;
+		
+		return result.toString();
+	}
+
 }
