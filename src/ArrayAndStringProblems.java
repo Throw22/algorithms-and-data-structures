@@ -30,6 +30,26 @@ public class ArrayAndStringProblems {
 		System.out.println("isPermutation (different lengths): " 
 				+ isPermutation("cat", "acts"));
 
+		//urlify()
+		char[] url1 = {'J', 'o', 'h', 'n', ' ', 
+				'S', 'a', 'm', ' ', 
+				'D', 'o', 'e', 
+				' ', ' ', ' ', ' '};
+		char[] url2 = {'N', 'o', 'S', 'p', 'a', 'c', 'e'};
+		char[] url3 = {' ', ' ', ' ', ' ', ' '};
+		
+		urlify(url1);
+		urlify(url2);
+		urlify(url3);
+		
+		System.out.println("urlify (\"John Sam Doe\"): " 
+				+ Arrays.toString(url1));
+		System.out.println("urlify (\"NoSpace\"): " 
+				+ Arrays.toString(url2));
+		System.out.println("urlify (\"     \"):" 
+				+ Arrays.toString(url3));
+
+
 	}
 	
 	/*
@@ -99,6 +119,35 @@ public class ArrayAndStringProblems {
 		}
 		
 		return true;
+	}
+	
+	/*
+	 * Goal: given a char array with extra spaces at the end, update array
+	 * to replace spaces between words with chars '%', '2', '0'
+	 * Notes on thought process:
+	 * 1) Will take O(N) time, just need to loop through array
+	 * 2) Start from the back to avoid overwriting anything
+	 * 3) (Personal taste) Two tracking variables would be easier to read
+	 * than doing the math on position every time
+	 */
+	
+	public static void urlify(char[] input) {
+		int trackingIndex = input.length -1;
+		int writingIndex = input.length - 1;
+		
+		while (trackingIndex >= 0 && input[trackingIndex] == ' ') trackingIndex--;
+		
+		for (/*trackingIndex*/; trackingIndex >= 0; trackingIndex--) {
+			if (input[trackingIndex] != ' ') {
+				input[writingIndex] = input[trackingIndex];
+				writingIndex--;
+			} else {
+				input[writingIndex] = '0'; 
+				input[writingIndex - 1] = '2';
+				input[writingIndex - 2] = '%';
+				writingIndex -= 3;
+			}
+		}
 	}
 	
 }
