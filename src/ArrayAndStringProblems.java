@@ -21,6 +21,7 @@ public class ArrayAndStringProblems {
 						+ "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnop"
 						+ "qrstuvwxyz1234567890abcdefghijklmnopqrstuv"
 						+ "wxyz[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~a"));
+		System.out.println();
 		
 		//isPermutation()
 		System.out.println("isPermutation (anagram): " 
@@ -29,6 +30,8 @@ public class ArrayAndStringProblems {
 				+ isPermutation("catttac", "acettac"));
 		System.out.println("isPermutation (different lengths): " 
 				+ isPermutation("cat", "acts"));
+		System.out.println();
+
 
 		//urlify()
 		char[] url1 = {'J', 'o', 'h', 'n', ' ', 
@@ -48,8 +51,17 @@ public class ArrayAndStringProblems {
 				+ Arrays.toString(url2));
 		System.out.println("urlify (\"     \"):" 
 				+ Arrays.toString(url3));
+		System.out.println();
 
 
+		//isPalindromePermutation()
+		
+		System.out.println("isPalindromePermutation (permutation of palindrome, odd, no spaces): " 
+				+ isPalindromePermutation("tcatacc"));
+		System.out.println("isPalindromePermutation (permutation of palindrome, even, spaces): " 
+				+ isPalindromePermutation("t ca ta c"));
+		System.out.println("isPalindromePermutation (not permutation of palindrome): " 
+				+ isPalindromePermutation("tccsfatace"));
 	}
 	
 	/*
@@ -148,6 +160,44 @@ public class ArrayAndStringProblems {
 				writingIndex -= 3;
 			}
 		}
+	}
+	
+	/*
+	 * Goal: determine whether a String is a permutation of a palindrome (ignore spaces)
+	 * Notes on thought process:
+	 * 1) In order to be a palindrome the counts for each char except one has to
+	 * be even
+	 * 2) Sorting the String first would allow for looping over the String and
+	 * keeping track of different char counts in order to flag for multiple odds,
+	 * but sorting bottlenecks the task as O(N log N)
+	 * 3) A HashMap would be great for tracking char counts and brings runtime
+	 * down to O(N)
+	 */
+	
+	public static boolean isPalindromePermutation(String input) {
+		Map<Character,Integer> counts = new HashMap<>();
+		
+		for (int i = 0; i < input.length(); i++) {
+			char c = input.charAt(i);
+			if (c == ' ') continue;
+			
+			if (counts.get(c) == null) {
+				counts.put(c, 1);
+			} else {
+				counts.put(c, counts.get(c) + 1);
+			}
+		}
+		
+		boolean foundOdd = false;
+		
+		for (Map.Entry<Character,Integer> entry: counts.entrySet()) {
+			if (entry.getValue() %2 != 0) {
+				if (foundOdd) return false;
+				foundOdd = true;
+			}
+		}
+		
+		return true;
 	}
 	
 }
