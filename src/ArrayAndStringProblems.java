@@ -11,14 +11,14 @@ import java.util.*;
 public class ArrayAndStringProblems {
 	// For light testing/demonstration
 	public static void main(String[] args) {
-		//allUniqueChars()
+		//hasAllUniqueChars()
 		
 		System.out.println("allUniqueChars (unique String): " 
-				+ allUniqueChars("abcdefghijklmnopqrstuvwxyz"));
+				+ hasAllUniqueChars("abcdefghijklmnopqrstuvwxyz"));
 		System.out.println("allUniqueChars (not unique String): " 
-				+ allUniqueChars("abcdefghijklmnopqrstuvwxyza"));
+				+ hasAllUniqueChars("abcdefghijklmnopqrstuvwxyza"));
 		System.out.println("allUniqueChars (String over 128 chars): " 
-				+ allUniqueChars(" !\"#$%&'()*+,-./0123456789:;<=>?@"
+				+ hasAllUniqueChars(" !\"#$%&'()*+,-./0123456789:;<=>?@"
 						+ "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnop"
 						+ "qrstuvwxyz1234567890abcdefghijklmnopqrstuv"
 						+ "wxyz[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~a"));
@@ -73,8 +73,24 @@ public class ArrayAndStringProblems {
 				+ compress("aaaabbbccd"));
 		System.out.println("compress (compression makes longer string): " 
 				+ compress("abcd"));
+		System.out.println();
+	
+		//isOneEditAway()
 		
-	}
+		System.out.println("isOneEditAway (one replacement): " 
+				+ isOneEditAway("loveCats", "loveRats"));
+		System.out.println("isOneEditAway (one addition): " 
+				+ isOneEditAway("loveCat", "loveCats"));
+		System.out.println("isOneEditAway (one deletion): " 
+				+ isOneEditAway("loveCats", "loveCat"));
+		System.out.println("isOneEditAway (two replacements): " 
+				+ isOneEditAway("loveCats", "loveRags"));
+		System.out.println("isOneEditAway (two additions): " 
+				+ isOneEditAway("loveCats", "loveCactus"));
+		System.out.println("isOneEditAway (two deletions): " 
+				+ isOneEditAway("loveTaters", "loveTats"));
+		}
+	
 	
 	/*
 	 * Goal: determine if a String has all unique characters
@@ -90,7 +106,7 @@ public class ArrayAndStringProblems {
 	 * all unique chars so we can save time checking
 	 */
 	
-	public static boolean allUniqueChars(String input) {
+	public static boolean hasAllUniqueChars(String input) {
 		if (input.length() > 128) return false;
 		
 		Set<Character> unique = new HashSet<>();
@@ -247,6 +263,61 @@ public class ArrayAndStringProblems {
 		if (result.toString().length() >= input.length()) return input;
 		
 		return result.toString();
+	}
+
+	/*
+	 * Goal: Determine if a String is one edit (or less) away from another String
+	 * where an edit could be an added char, a removed char, or a changed char
+	 * Notes on thought process:
+	 * 1) Should be able to accomplish in O(N) time by comparing both Strings
+	 * in order
+	 * 2) If the Strings are same length can check for single replacement, if
+	 * Strings are 1 length apart can check for insertion/deletion, otherwise
+	 * we know Strings are more than 1 edit apart if lengths have greater diff
+	 * 3) (Personal taste) Easier to read as multiple methods, even if it 
+	 * would be more compact as a single method
+	 */
+	
+	public static boolean isOneEditAway(String one, String two) {
+		if (one.length() == two.length()) {
+			return hasOneReplacement(one, two);
+		} else if (one.length() + 1 == two.length()) {
+			return hasOneInsertion(one, two);
+		} else if (one.length() - 1 == two.length()) {
+			return hasOneInsertion(two, one);
+		} else {
+			return false;
+		}
+	}
+	
+	private static boolean hasOneReplacement(String one, String two) {
+		boolean hasDifference = false;
+		
+		for (int i = 0; i < one.length(); i++) {
+			if (one.charAt(i) != two.charAt(i)) {
+				if (hasDifference) return false;
+				hasDifference = true;
+			}
+		}
+		
+		return true;
+	}
+	
+	private static boolean hasOneInsertion(String one, String two) {
+		int oneIndex = 0;
+		int twoIndex = 0;
+		
+		while (oneIndex < one.length() && twoIndex < two.length()) {
+			if (one.charAt(oneIndex) != two.charAt(twoIndex)) {
+				if (oneIndex != twoIndex) return false;
+				twoIndex++;
+			} else {
+				oneIndex++;
+				twoIndex++;
+			}
+		}
+		
+		return true;
 	}
 
 }
