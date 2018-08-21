@@ -89,7 +89,29 @@ public class ArrayAndStringProblems {
 				+ isOneEditAway("loveCats", "loveCactus"));
 		System.out.println("isOneEditAway (two deletions): " 
 				+ isOneEditAway("loveTaters", "loveTats"));
+		System.out.println();
+		
+		//rotate90()
+		
+		int[][] rotateTest = new int[4][4];
+		int count = 1;
+		for (int i = 0; i < rotateTest.length; i++) {
+			for (int j = 0; j < rotateTest.length; j++) {
+				rotateTest[i][j] = count;
+				count++;
+			}
 		}
+
+		rotate90(rotateTest);
+
+		System.out.println("rotate90 (1-16): ");
+		for (int i = 0; i < rotateTest.length; i++) {
+			System.out.println(Arrays.toString(rotateTest[i]));
+		}
+		
+		System.out.println();
+	}
+	
 	
 	
 	/*
@@ -319,5 +341,28 @@ public class ArrayAndStringProblems {
 		
 		return true;
 	}
-
+	
+	/*
+	 * Goal: Rotate a matrix 90 degrees in place
+	 * Notes on thought process:
+	 * 1) Should be able to accomplish this one 'layer' at a time, moving 
+	 * values into their new positions with only one temporary variable
+	 * 2) Should take O(N^2) time to hit all elements in matrix once
+	 */
+	
+	public static void rotate90(int[][] matrix) {
+		for (int row = 0; row < matrix.length / 2; row++) {
+			int lastElement = matrix.length - row - 1;
+	
+			for (int column = row; column < lastElement; column++) {
+				int offset = column - row;
+	
+				int temp = matrix[row][column]; 			
+				matrix[row][column] = matrix[lastElement - offset][row]; 
+				matrix[lastElement - offset][row] = matrix[lastElement][lastElement - offset];
+				matrix[lastElement][lastElement - offset] = matrix[column][lastElement];
+				matrix[column][lastElement] = temp; 
+			}
+		}
+	}
 }
