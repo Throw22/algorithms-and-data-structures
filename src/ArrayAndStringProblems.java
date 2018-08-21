@@ -9,111 +9,6 @@ import java.util.*;
  */
 
 public class ArrayAndStringProblems {
-	// For light testing/demonstration
-	public static void main(String[] args) {
-		//hasAllUniqueChars()
-		
-		System.out.println("allUniqueChars (unique String): " 
-				+ hasAllUniqueChars("abcdefghijklmnopqrstuvwxyz"));
-		System.out.println("allUniqueChars (not unique String): " 
-				+ hasAllUniqueChars("abcdefghijklmnopqrstuvwxyza"));
-		System.out.println("allUniqueChars (String over 128 chars): " 
-				+ hasAllUniqueChars(" !\"#$%&'()*+,-./0123456789:;<=>?@"
-						+ "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnop"
-						+ "qrstuvwxyz1234567890abcdefghijklmnopqrstuv"
-						+ "wxyz[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~a"));
-		System.out.println();
-		
-		//isPermutation()
-		
-		System.out.println("isPermutation (anagram): " 
-				+ isPermutation("tccatt", "tatctc"));
-		System.out.println("isPermutation (not an anagram): " 
-				+ isPermutation("catttac", "acettac"));
-		System.out.println("isPermutation (different lengths): " 
-				+ isPermutation("cat", "acts"));
-		System.out.println();
-
-
-		//urlify()
-		
-		char[] url1 = {'J', 'o', 'h', 'n', ' ', 
-				'S', 'a', 'm', ' ', 
-				'D', 'o', 'e', 
-				' ', ' ', ' ', ' '};
-		char[] url2 = {'N', 'o', 'S', 'p', 'a', 'c', 'e'};
-		char[] url3 = {' ', ' ', ' ', ' ', ' '};
-		
-		urlify(url1);
-		urlify(url2);
-		urlify(url3);
-		
-		System.out.println("urlify (\"John Sam Doe\"): " 
-				+ Arrays.toString(url1));
-		System.out.println("urlify (\"NoSpace\"): " 
-				+ Arrays.toString(url2));
-		System.out.println("urlify (\"     \"):" 
-				+ Arrays.toString(url3));
-		System.out.println();
-
-
-		//isPalindromePermutation()
-		
-		System.out.println("isPalindromePermutation (permutation of palindrome, odd, no spaces): " 
-				+ isPalindromePermutation("tcatacc"));
-		System.out.println("isPalindromePermutation (permutation of palindrome, even, spaces): " 
-				+ isPalindromePermutation("t ca ta c"));
-		System.out.println("isPalindromePermutation (not permutation of palindrome): " 
-				+ isPalindromePermutation("tccsfatace"));
-		System.out.println();
-		
-		//compress()
-		
-		System.out.println("compress (compression makes shorter string): " 
-				+ compress("aaaabbbccd"));
-		System.out.println("compress (compression makes longer string): " 
-				+ compress("abcd"));
-		System.out.println();
-	
-		//isOneEditAway()
-		
-		System.out.println("isOneEditAway (one replacement): " 
-				+ isOneEditAway("loveCats", "loveRats"));
-		System.out.println("isOneEditAway (one addition): " 
-				+ isOneEditAway("loveCat", "loveCats"));
-		System.out.println("isOneEditAway (one deletion): " 
-				+ isOneEditAway("loveCats", "loveCat"));
-		System.out.println("isOneEditAway (two replacements): " 
-				+ isOneEditAway("loveCats", "loveRags"));
-		System.out.println("isOneEditAway (two additions): " 
-				+ isOneEditAway("loveCats", "loveCactus"));
-		System.out.println("isOneEditAway (two deletions): " 
-				+ isOneEditAway("loveTaters", "loveTats"));
-		System.out.println();
-		
-		//rotate90()
-		
-		int[][] rotateTest = new int[4][4];
-		int count = 1;
-		for (int i = 0; i < rotateTest.length; i++) {
-			for (int j = 0; j < rotateTest.length; j++) {
-				rotateTest[i][j] = count;
-				count++;
-			}
-		}
-
-		rotate90(rotateTest);
-
-		System.out.println("rotate90 (1-16): ");
-		for (int i = 0; i < rotateTest.length; i++) {
-			System.out.println(Arrays.toString(rotateTest[i]));
-		}
-		
-		System.out.println();
-	}
-	
-	
-	
 	/*
 	 * Goal: determine if a String has all unique characters
 	 * Notes on thought process: 
@@ -351,6 +246,7 @@ public class ArrayAndStringProblems {
 	 */
 	
 	public static void rotate90(int[][] matrix) {
+
 		for (int row = 0; row < matrix.length / 2; row++) {
 			int lastElement = matrix.length - row - 1;
 	
