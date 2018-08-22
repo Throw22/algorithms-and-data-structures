@@ -37,19 +37,6 @@ public class LinkedList {
 		}
 	}
 	
-//	public boolean equals(LinkedList other) {
-//		LinkedListNode current1 = this.head;
-//		LinkedListNode current2 = other.head;
-//				
-//		while (current1 != null && current2 != null) {
-//			if (current1.next == null && current2.next != null) return false;
-//			if (current2.next == null && current1.next != null) return false;
-//			if (current1.data != current2.data) return false;
-//		}
-//		
-//		return true;
-//	}
-	
 	public boolean equals(Object other) {
 		if (this == other) return true;
 		if (!(other instanceof LinkedList)) return false;
