@@ -14,7 +14,10 @@ public class LinkedList {
 	public void add(int data) {
 		LinkedListNode current = head;
 		
-		if (current == null) current = new LinkedListNode(data);
+		if (current == null) {
+			head = new LinkedListNode(data);
+			return;
+		}
 		
 		while (current.next != null) current = current.next;
 		

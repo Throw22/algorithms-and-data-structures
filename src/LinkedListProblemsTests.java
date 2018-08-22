@@ -1,5 +1,6 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.internal.ExpectedExceptionsHolder;
 
 public class LinkedListProblemsTests {
 	/* removeDuplicates */
@@ -146,5 +147,22 @@ public class LinkedListProblemsTests {
 	    final boolean actualEquals = expected.equals(actual);
 	    
 	    Assert.assertEquals(actualEquals, expectedEquals);
+	}
+	
+/* getKthFromLast */
+	
+	@Test
+	public void getKthFromLast_KOf1_ReturnsLastElement() {
+		final int expected = 4;
+		
+		LinkedList list = new LinkedList();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		
+		final int actual = LinkedListProblems.getKthFromLast(list,1);
+		
+		Assert.assertEquals(actual, expected);
 	}
 }
