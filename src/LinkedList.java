@@ -37,16 +37,50 @@ public class LinkedList {
 		}
 	}
 	
-	public boolean equals(LinkedList other) {
+//	public boolean equals(LinkedList other) {
+//		LinkedListNode current1 = this.head;
+//		LinkedListNode current2 = other.head;
+//				
+//		while (current1 != null && current2 != null) {
+//			if (current1.next == null && current2.next != null) return false;
+//			if (current2.next == null && current1.next != null) return false;
+//			if (current1.data != current2.data) return false;
+//		}
+//		
+//		return true;
+//	}
+	
+	public boolean equals(Object other) {
+		if (this == other) return true;
+		if (!(other instanceof LinkedList)) return false;
+		
+		LinkedList list = (LinkedList) other;
+		
 		LinkedListNode current1 = this.head;
-		LinkedListNode current2 = other.head;
-				
+		LinkedListNode current2 = list.head;
+		
 		while (current1 != null && current2 != null) {
-			if (current1.next == null && current2.next != null) return false;
-			if (current2.next == null && current1.next != null) return false;
 			if (current1.data != current2.data) return false;
+			current1 = current1.next;
+			current2 = current2.next;
 		}
+		
+		if (current1 != null || current2 != null) return false;
 		
 		return true;
 	}
+	
+	public int hashCode() {
+		LinkedListNode current = this.head;
+		int hash = 0;
+		int multiplier = 7;
+		
+		while (current != null) {
+			hash += current.data * multiplier;
+			multiplier+=3;
+		}
+		
+		return hash;
+	}
+	
 }
