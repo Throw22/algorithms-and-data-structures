@@ -148,4 +148,56 @@ public class LinkedListProblemsTests {
 		
 		Assert.assertEquals(actual, expected);
 	}
+	
+	@Test
+	public void getKthFromLast_KOf2_ReturnsSecondToLastElement() {
+		final int expected = 3;
+		
+		LinkedList list = new LinkedList();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		
+		final int actual = LinkedListProblems.getKthFromLast(list,2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getKthFromLast_KOfLength_ReturnsFirstElement() {
+		final int expected = 1;
+		
+		LinkedList list = new LinkedList();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		
+		final int actual = LinkedListProblems.getKthFromLast(list,4);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getKthFromLast_KOfMoreThanLength_ReturnsFirstElement() {
+		final int expected = 1;
+		
+		LinkedList list = new LinkedList();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		
+		final int actual = LinkedListProblems.getKthFromLast(list,6);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class )
+	public void getKthFromLast_KOfLessThan1_ThrowsException() {
+		LinkedList list = new LinkedList();
+		
+		LinkedListProblems.getKthFromLast(list,0);
+	}
 }

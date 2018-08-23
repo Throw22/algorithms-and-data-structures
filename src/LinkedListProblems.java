@@ -66,41 +66,13 @@ public class LinkedListProblems {
 	 * last, also O(N) time
 	 */
 	
-	public static void main(String[] args) {
-		LinkedList test = new LinkedList();
-		test.add(1);
-		test.add(2);
-		test.add(3);
-		test.add(1);
-		test.add(3);
-		test.add(2);
-		test.add(4);
-		test.add(4);
-		test.add(4);
-		test.add(4);
-		test.add(1);
-		
-		LinkedListNode current = test.head;
-		while (current != null) {
-			System.out.println(current.data); 
-			current = current.next;
-		}
-		
-		System.out.println();
-		removeDuplicatesWithoutBuffer(test);
-		
-		current = test.head;
-		while (current != null) {
-			System.out.println(current.data); 
-			current = current.next;
-		}
-	}
-	
 	public static int getKthFromLast(LinkedList list, int k) {
+		if (k < 1) throw new IllegalArgumentException("k is less than 1: " + k);
+		
 		LinkedListNode front = list.head;
 		LinkedListNode kthBack = list.head;
 		
-		while (k > 1) {
+		while (front != null && k > 1) {
 			front = front.next;
 			k--;
 		}
