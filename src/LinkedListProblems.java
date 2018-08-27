@@ -106,4 +106,50 @@ public class LinkedListProblems {
 		node.data = node.next.data;
 		node.next = node.next.next;
 	}
+	
+	/*
+	 * Goal: Move all nodes less than a given value to left of partition,
+	 * all nodes more than or equal to value to right of partition
+	 * Notes on thought process: 
+	 * 1) Each side of partition can be its own new list, just need to
+	 * keep track of where they start and end so can be pieced together
+	 * 2) Should only require going through original list once, O(N) time
+	 */
+	
+	public static void partition(LinkedList list, int p) {
+		LinkedListNode lessThanP = null;
+		LinkedListNode pOrGreater = null;
+		LinkedListNode startOfPartition = null;
+		LinkedListNode current = list.head;
+		
+		while (current != null) {
+			if (current.data < p) {
+				if (lessThanP != null) {
+					lessThanP.next = current;
+					lessThanP = lessThanP.next;
+				} else {
+					lessThanP = current;
+					list.head = current; 
+				}
+			} else {
+				if (pOrGreater != null) {
+					pOrGreater.next = current;
+					pOrGreater = pOrGreater.next;
+				} else {
+					pOrGreater = current;
+					startOfPartition = current;
+				}
+			}
+			
+			current = current.next;
+		}
+		
+		if (lessThanP == null) {
+			list.head = startOfPartition;
+		} else {
+			lessThanP.next = startOfPartition;
+		}
+		
+		if (pOrGreater != null) pOrGreater.next = null;
+	}
 }
