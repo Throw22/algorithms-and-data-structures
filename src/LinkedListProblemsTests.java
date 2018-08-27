@@ -200,4 +200,22 @@ public class LinkedListProblemsTests {
 		
 		LinkedListProblems.getKthFromLast(list,0);
 	}
+	
+	@Test
+	public void removeFromMiddle_NodeIsInMiddle_RemovesNode() {
+		final LinkedList expected = new LinkedList();
+		expected.add(1);
+		expected.add(2);
+		expected.add(4);
+
+		LinkedList actual = new LinkedList();
+		actual.add(1);
+		actual.add(2);
+		actual.add(3);
+		actual.add(4);
+				
+		LinkedListProblems.removeFromMiddle(actual.getNode(3));
+		
+		Assert.assertEquals(actual, expected);
+	}
 }

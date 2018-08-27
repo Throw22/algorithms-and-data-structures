@@ -11,6 +11,17 @@ public class LinkedList {
 		this.head = null;
 	}
 	
+	public LinkedListNode getNode(int data) {
+		LinkedListNode current = head;
+		
+		while (current != null) {
+			if (current.data == data) return current;
+			current = current.next;
+		}
+		
+		return null;
+	}
+	
 	public void add(int data) {
 		LinkedListNode current = head;
 		
@@ -69,5 +80,4 @@ public class LinkedList {
 		
 		return hash;
 	}
-	
 }

@@ -84,4 +84,26 @@ public class LinkedListProblems {
 		
 		return kthBack.data;
 	}
+	
+	/*
+	 * Goal: Delete a given node in the middle of a list without
+	 * any additional references
+	 * Notes on thought process: 
+	 * 1) Since we don't have access to the head of the list can't
+	 * iterate from beginning
+	 * 2) A normal removal method just redirects past the node to
+	 * be deleted so nothing is pointing to it, could do that by
+	 * copying the next node onto the one to be deleted and deleting
+	 * the old next instead
+	 * 3) Won't work for last node, and breaks current 
+	 * implementation of LinkedList if used on first node (can't
+	 * set head to next node)
+	 */
+	
+	public static void removeFromMiddle(LinkedListNode node) {
+		if (node == null || node.next == null) return;
+		
+		node.data = node.next.data;
+		node.next = node.next.next;
+	}
 }
