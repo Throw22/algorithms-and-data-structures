@@ -216,6 +216,23 @@ public class LinkedListProblems {
 		return sum;
 	}
 	
+	/*
+	 * Goal: Determine if a LinkedList is a palindrome
+	 * Notes on thought process: 
+	 * 1) If the list had a reference to its tail this would be trivial,
+	 * so presumably it's a singly linked list
+	 * 2) Moving all the data over to a new data structure would
+	 * probably take too much time, even if it's easier to look for
+	 * a palindrome in, say, an ArrayList
+	 * 3) We only need to store the first half of the list since that's
+	 * what should match the second half
+	 * 4) A stack would allow us to save the first half of the list and
+	 * then pop off in reverse to make comparisons against the back half,
+	 * since the stack would lead to a perfect palindrome
+	 * 5) Can get to the halfway point of the list using a runner node
+	 * that moves twice the rate of the one adding values to our stack
+	 */
+	
 	public static boolean isPalindrome(LinkedList list) {
 		Stack<Integer> reversed = new Stack<Integer>();
 		LinkedListNode current = list.head;
