@@ -368,4 +368,159 @@ public class LinkedListProblemsTests {
 
 		Assert.assertEquals(actual, expected);		
 	}
+	
+	/* sumLists */
+	
+	@Test
+	public void sumLists_SameLengthsNoCarryOvers_CreatesSumList() {
+		final LinkedList expected = new LinkedList();
+		expected.add(2);
+		expected.add(4);
+		expected.add(6);
+		
+		final LinkedList test = new LinkedList();
+		test.add(1);
+		test.add(2);
+		test.add(3);
+		
+		final LinkedList actual = LinkedListProblems.sumLists(test, test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void sumLists_DifferentLengthsNoCarryOvers_CreatesSumList() {
+		final LinkedList expected = new LinkedList();
+		expected.add(2);
+		expected.add(4);
+		expected.add(6);
+		expected.add(4);
+		expected.add(8);
+		expected.add(0);
+		expected.add(3);
+		
+		final LinkedList test = new LinkedList();
+		test.add(1);
+		test.add(2);
+		test.add(3);
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(1);
+		test2.add(2);
+		test2.add(3);
+		test2.add(4);
+		test2.add(8);
+		test2.add(0);
+		test2.add(3);
+		
+		final LinkedList actual = LinkedListProblems.sumLists(test, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void sumLists_BothEmpty_CreatesEmptyList() {
+		final LinkedList expected = new LinkedList();
+		
+		final LinkedList test = new LinkedList();
+		
+		final LinkedList actual = LinkedListProblems.sumLists(test, test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void sumLists_DifferentLengthsMultipleCarryOvers_CreatesSumList() {
+		final LinkedList expected = new LinkedList();
+		expected.add(5);
+		expected.add(8);
+		expected.add(7);
+		expected.add(7);
+		expected.add(8);
+		expected.add(0);
+		expected.add(3);
+		
+		final LinkedList test = new LinkedList();
+		test.add(9);
+		test.add(9);
+		test.add(9);
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(6);
+		test2.add(8);
+		test2.add(7);
+		test2.add(6);
+		test2.add(8);
+		test2.add(0);
+		test2.add(3);
+		
+		final LinkedList actual = LinkedListProblems.sumLists(test, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void sumLists_SameLengthsMultipleCarryOvers_CreatesLongerSumList() {
+		final LinkedList expected = new LinkedList();
+		expected.add(5);
+		expected.add(8);
+		expected.add(3);
+		expected.add(1);
+		
+		final LinkedList test = new LinkedList();
+		test.add(9);
+		test.add(8);
+		test.add(7);
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(6);
+		test2.add(9);
+		test2.add(5);
+		
+		final LinkedList actual = LinkedListProblems.sumLists(test, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void sumLists_OneEmptyList_CreatesSumList() {
+		final LinkedList expected = new LinkedList();
+		expected.add(6);
+		expected.add(9);
+		expected.add(5);
+		
+		final LinkedList test = new LinkedList();
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(6);
+		test2.add(9);
+		test2.add(5);
+		
+		final LinkedList actual = LinkedListProblems.sumLists(test, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void sumLists_DifferentLengthsMultipleZeros_CreatesSumList() {
+		final LinkedList expected = new LinkedList();
+		expected.add(1);
+		expected.add(0);
+		expected.add(0);
+		expected.add(1);
+		
+		final LinkedList test = new LinkedList();
+		test.add(1);
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(0);
+		test2.add(0);
+		test2.add(0);
+		test2.add(1);
+		
+		final LinkedList actual = LinkedListProblems.sumLists(test, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
 }

@@ -1,5 +1,7 @@
 import java.util.*;
 
+import org.testng.Assert;
+
 /* Written by Nicholas Romeo
  * 
  * The following are possible solutions to a variety of 
@@ -174,5 +176,43 @@ public class LinkedListProblems {
 		}
 		
 		list.head = previous;
+	}
+	
+	/*
+	 * Goal: Given two lists of integers that represent a larger integer,
+	 * return their sum as its own list of integers
+	 * Notes on thought process: 
+	 * 1) Each node is a digit, so just add them together to create 
+	 * node for new list and keep track of any overflow to be added,
+	 * should run in O(N + M) time 
+	 */
+	
+	public static LinkedList sumLists(LinkedList one, LinkedList two) {
+		LinkedList sum = new LinkedList();
+		LinkedListNode current1 = one.head;
+		LinkedListNode current2 = two.head;
+		int carryOver = 0;
+		
+		while (current1 != null || current2 != null) {
+			int data1 = current1 != null ? (current1.data) : 0;
+			int data2 = current2 != null ? (current2.data) : 0;
+			int amountToAdd = (data1 + data2 + carryOver);
+			
+			if (amountToAdd >= 10) {
+				carryOver = amountToAdd / 10;
+				amountToAdd %= 10;
+			} else {
+				carryOver = 0;
+			}
+			
+			sum.add(amountToAdd);
+			
+			if (current1 != null) current1 = current1.next;
+			if (current2 != null) current2 = current2.next;
+		}
+		
+		if (carryOver != 0) sum.add(carryOver);
+
+		return sum;
 	}
 }
