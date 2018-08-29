@@ -215,4 +215,25 @@ public class LinkedListProblems {
 
 		return sum;
 	}
+	
+	public static boolean isPalindrome(LinkedList list) {
+		Stack<Integer> reversed = new Stack<Integer>();
+		LinkedListNode current = list.head;
+		LinkedListNode runner = list.head;
+		
+		while (runner != null && runner.next != null) {
+			reversed.push(current.data);
+			current = current.next;
+			runner = runner.next.next;
+		}
+		
+		if (runner != null) current = current.next;
+				
+		while (!reversed.isEmpty()) {
+			if (reversed.pop() != current.data) return false;
+			current = current.next;
+		}
+		
+		return true;
+	}
 }

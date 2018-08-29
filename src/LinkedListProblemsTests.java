@@ -523,4 +523,96 @@ public class LinkedListProblemsTests {
 		Assert.assertEquals(actual, expected);
 	}
 	
+	/* isPalindrome */
+	
+	@Test
+	public void isPalindrome_EmptyList_ReturnsTrue() {
+		final boolean expected = true;
+		
+		final LinkedList test = new LinkedList();
+		
+		final boolean actual = LinkedListProblems.isPalindrome(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void isPalindrome_SingleElementList_ReturnsTrue() {
+		final boolean expected = true;
+		
+		final LinkedList test = new LinkedList();
+		test.add(5);
+		
+		final boolean actual = LinkedListProblems.isPalindrome(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void isPalindrome_OddNumberElementPalindrome_ReturnsTrue() {
+		final boolean expected = true;
+		
+		final LinkedList test = new LinkedList();
+		test.add(5);
+		test.add(6);
+		test.add(7);
+		test.add(6);
+		test.add(5);
+		
+		final boolean actual = LinkedListProblems.isPalindrome(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void isPalindrome_EvenNumberElementPalindrome_ReturnsTrue() {
+		final boolean expected = true;
+		
+		final LinkedList test = new LinkedList();
+		test.add(5);
+		test.add(6);
+		test.add(7);
+		test.add(7);
+		test.add(6);
+		test.add(5);
+		
+		final boolean actual = LinkedListProblems.isPalindrome(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void isPalindrome_OddNumberElementNonPalindrome_ReturnsFalse() {
+		final boolean expected = false;
+		
+		final LinkedList test = new LinkedList();
+		test.add(5);
+		test.add(6);
+		test.add(7);
+		test.add(8);
+		test.add(5);
+		
+		final boolean actual = LinkedListProblems.isPalindrome(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void isPalindrome_EvenNumberElementNonPalindrome_ReturnsFalse() {
+		final boolean expected = false;
+		
+		final LinkedList test = new LinkedList();
+		test.add(5);
+		test.add(6);
+		test.add(6);
+		test.add(7);
+		test.add(6);
+		test.add(5);
+		
+		final boolean actual = LinkedListProblems.isPalindrome(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	
 }
