@@ -10,3 +10,14 @@ Solutions to interesting programming problems with additional insight provided i
   <li>isOneEditAway - determines whether one String has had a single character addition, subtraction or modification from as compared to another String - O(N)</li>
   <li>rotate90 - given a square matrix of integers, rotates values in place so the matrix appears shifted 90 degrees O(N<sup>2</sup>)</li>
 </details>
+
+<details><summary>Linked Lists</summary>
+  <li>LinkedList - a basic linked list class for testing</li>
+  <li>LinkedListNode - a basic node class for testing</li>
+  <li>removeDuplicates - removes any repeated elements with help of a HashSet - O(N)</li>
+  <li>removeDuplicatesWithoutBuffer - removes any repeated elements in place - O(N<sup>2</sup>)</li>
+  <li>getKthFromLast - returns element that is k away from end of list - O(N)</li>
+  <li>removeFromMiddle - removes an element from the middle of a list - O(N)</li>
+  <li>partition - reorders list so elements less than partition value come before elements equal to or greater than partition value - O(N)</li>
+  <li>reverse - reverses order of elements in list - O(N)</li>
+</details>
