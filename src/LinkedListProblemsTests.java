@@ -319,8 +319,52 @@ public class LinkedListProblemsTests {
 		actual.add(3);
 		actual.add(0);
 
-
 		LinkedListProblems.partition(actual, 3);
+
+		Assert.assertEquals(actual, expected);		
+	}
+	
+	/* reverse */
+
+	@Test
+	public void reverse_ListIsEmpty_NoChanges() {
+		final LinkedList expected = new LinkedList();
+
+		final LinkedList actual = new LinkedList();
+
+		LinkedListProblems.reverse(actual);
+
+		Assert.assertEquals(actual, expected);		
+	}
+	
+	@Test
+	public void reverse_SingleElementList_NoChanges() {
+		final LinkedList expected = new LinkedList();
+		expected.add(1);
+
+		final LinkedList actual = new LinkedList();
+		actual.add(1);
+
+		LinkedListProblems.reverse(actual);
+
+		Assert.assertEquals(actual, expected);		
+	}
+	
+	@Test
+	public void reverse_MultiElementList_GetsReversed() {
+		final LinkedList expected = new LinkedList();
+		expected.add(4);
+		expected.add(3);
+		expected.add(2);
+		expected.add(1);
+
+		final LinkedList actual = new LinkedList();
+		actual.add(1);
+		actual.add(2);
+		actual.add(3);
+		actual.add(4);
+
+		LinkedListProblems.reverse(actual);
 
 		Assert.assertEquals(actual, expected);		
 	}

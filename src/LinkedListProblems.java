@@ -152,4 +152,27 @@ public class LinkedListProblems {
 		
 		if (pOrGreater != null) pOrGreater.next = null;
 	}
+	
+	/*
+	 * Goal: Reverse a LinkedList in place
+	 * Notes on thought process: 
+	 * 1) Can be done in O(N) time by keeping track of the previous
+	 * node in the list as we go through and setting its original
+	 * next to that previous node and updating as we go
+	 */
+	
+	public static void reverse(LinkedList list) {
+		LinkedListNode current = list.head;
+		LinkedListNode previous = null;
+		LinkedListNode next = null;
+		
+		while (current != null) {
+			next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+		}
+		
+		list.head = previous;
+	}
 }
