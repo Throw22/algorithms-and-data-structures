@@ -20,10 +20,10 @@ Solutions to interesting programming problems with additional insight provided i
     <li>removeDuplicates - removes any repeated elements with help of a HashSet - O(N)</li>
     <li>removeDuplicatesWithoutBuffer - removes any repeated elements in place - O(N<sup>2</sup>)</li>
     <li>getKthFromLast - returns element that is k away from end of list - O(N)</li>
-    <li>removeFromMiddle - removes an element from the middle of a list - O(N)</li>
+    <li>removeFromMiddle - removes an element from the middle of a list - O(1)</li>
     <li>partition - reorders list so elements less than partition value come before elements equal to or greater than partition value - O(N)</li>
     <li>reverse - reverses order of elements in list - O(N)</li>
     <li>sumLists - creates a new list of integers representing the sum of two given lists of integers - O(N)</li>
-    <li>isPalindrome - determines whether a list is a palindrome by utilizing a stack - O(N)</li>
+    <li>isPalindrome - determines if a list is a palindrome by utilizing a stack - O(N)</li>
   </ul>
 </details>
