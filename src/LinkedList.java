@@ -35,6 +35,19 @@ public class LinkedList {
 		current.next = new LinkedListNode(data);
 	}
 	
+	public void add(LinkedListNode node) {
+		LinkedListNode current = head;
+		
+		if (current == null) {
+			head = node;
+			return;
+		}
+		
+		while (current.next != null) current = current.next;
+		
+		current.next = node;
+	}
+	
 	public void remove(int data) {
 		LinkedListNode current = head;
 		

@@ -1,7 +1,5 @@
 import java.util.*;
 
-import org.testng.Assert;
-
 /* Written by Nicholas Romeo
  * 
  * The following are possible solutions to a variety of 
@@ -252,5 +250,47 @@ public class LinkedListProblems {
 		}
 		
 		return true;
+	}
+	
+	/*
+	 * Goal: Get node where two singly linked lists intersect
+	 * Notes on thought process: 
+	 * 1) Lists will often be different lengths, but if they do intersect
+	 * then at least the last node will be the same for both
+	 * 2) Could work backwards from the end of each list by creating a 
+	 * stack for each, but that takes a lot more space and seems overly
+	 * complicated
+	 * 3) Since the lists would have to be the same after the point of
+	 * intersection, the only differences would be the nodes before, 
+	 * so by traveling through each list at the same time and jumping to
+	 * the head of the other list when one runs out and the runners have
+	 * to collide at the point of intersection - O(N+M)
+	 */
+	
+	public static LinkedListNode getIntersectingNode(LinkedList one, LinkedList two) {
+		LinkedListNode current1 = one.head;
+		LinkedListNode current2 = two.head;
+		boolean switched1 = false;
+		boolean switched2 = false;
+		
+		while (current1 != null && current2 != null) {
+			if (current1 == current2) return current1;
+			
+			if (current1.next == null && !switched1) {
+				current1 = two.head;
+				switched1 = true;
+			} else {
+				current1 = current1.next;
+			}
+			
+			if (current2.next == null && !switched2) {
+				current2 = one.head;
+				switched2 = true;
+			} else {
+				current2 = current2.next;
+			}
+		}
+
+		return null;
 	}
 }

@@ -614,5 +614,131 @@ public class LinkedListProblemsTests {
 		Assert.assertEquals(actual, expected);
 	}
 	
+	/* getIntersectingNode */
 	
+	@Test
+	public void getIntersectingNode_BothListsEmpty_ReturnsNull() {
+		final LinkedListNode expected = null;
+		
+		final LinkedList test1 = new LinkedList();		
+		final LinkedList test2 = new LinkedList();
+		
+		final LinkedListNode actual = LinkedListProblems.getIntersectingNode(test1, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getIntersectingNode_OneListEmpty_ReturnsNull() {
+		final LinkedListNode expected = null;
+		
+		final LinkedList test1 = new LinkedList();		
+		test1.add(5);
+		
+		final LinkedList test2 = new LinkedList();
+		
+		final LinkedListNode actual = LinkedListProblems.getIntersectingNode(test1, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getIntersectingNode_NoIntersection_ReturnsNull() {
+		final LinkedListNode expected = null;
+		
+		final LinkedList test1 = new LinkedList();		
+		test1.add(1);
+		test1.add(2);
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(1);
+		test2.add(2);
+		test2.add(3);
+		
+		final LinkedListNode actual = LinkedListProblems.getIntersectingNode(test1, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getIntersectingNode_IntersectAtStart_ReturnsIntersection() {
+		final LinkedListNode expected = new LinkedListNode(1);
+		
+		final LinkedList test1 = new LinkedList();		
+		test1.add(expected);
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(expected);
+		
+		expected.next = new LinkedListNode(2);
+		expected.next.next = new LinkedListNode(3);
+		
+		final LinkedListNode actual = LinkedListProblems.getIntersectingNode(test1, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getIntersectingNode_SameLengthsIntersectAtEnd_ReturnsIntersection() {
+		final LinkedListNode expected = new LinkedListNode(3);
+		
+		final LinkedList test1 = new LinkedList();	
+		test1.add(1);
+		test1.add(2);
+		test1.add(expected);
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(1);
+		test2.add(2);
+		test2.add(expected);
+		
+		final LinkedListNode actual = LinkedListProblems.getIntersectingNode(test1, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getIntersectingNode_DifferentLengthsIntersectAtEnd_ReturnsIntersection() {
+		final LinkedListNode expected = new LinkedListNode(3);
+		
+		final LinkedList test1 = new LinkedList();	
+		test1.add(0);
+		test1.add(1);
+		test1.add(2);
+		test1.add(expected);
+		
+		final LinkedList test2 = new LinkedList();
+		test2.add(1);
+		test2.add(2);
+		test2.add(expected);
+		
+		final LinkedListNode actual = LinkedListProblems.getIntersectingNode(test1, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getIntersectingNode_DifferentLengthsListsIntersectInMiddle_ReturnsIntersection() {
+		final LinkedListNode expected = new LinkedListNode(5);
+		
+		final LinkedList test1 = new LinkedList();		
+		test1.add(1);
+		test1.add(2);
+		test1.add(3);
+		test1.add(4);
+		test1.add(expected);
+
+		final LinkedList test2 = new LinkedList();
+		test2.add(1);
+		test2.add(2);
+		test2.add(expected);
+		
+		expected.next = new LinkedListNode(6);
+		expected.next.next = new LinkedListNode(7);
+		expected.next.next.next = new LinkedListNode(8);
+		
+		final LinkedListNode actual = LinkedListProblems.getIntersectingNode(test1, test2);
+		
+		Assert.assertEquals(actual, expected);
+	}
 }
