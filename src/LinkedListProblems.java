@@ -293,4 +293,28 @@ public class LinkedListProblems {
 
 		return null;
 	}
+	
+	/*
+	 * Goal: Return the node that is at the start of a loop in a list
+	 * Notes on thought process: 
+	 * 1) Could do this without any additional data structures with
+	 * a runner that goes ahead at twice the speed of a normal runner,
+	 * they'd collide at the start of the loop eventually
+	 * 2) Sets are great at tracking unique values, and since the start
+	 * of the loop would be the first node to appear twice it would
+	 * be caught easily with a set
+	 */
+	
+	public static LinkedListNode getStartOfLoop(LinkedList list) {
+		LinkedListNode current = list.head;
+		Set<LinkedListNode> nodes = new HashSet<>();
+		
+		while (current != null) {
+			if (nodes.contains(current)) return current;
+			nodes.add(current);
+			current = current.next;
+		}
+		
+		return null;
+	}
 }

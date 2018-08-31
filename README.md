@@ -25,5 +25,7 @@ Solutions to interesting programming problems with additional insight provided i
     <li>reverse - reverses order of elements in list - O(N)</li>
     <li>sumLists - creates a new list of integers representing the sum of two given lists of integers - O(N)</li>
     <li>isPalindrome - determines if a list is a palindrome by utilizing a stack - O(N)</li>
+    <li>getIntersectingNode - returns the node where two singly linked lists intersect (or null if they don't) - O(N+M)</li>
+    <li>getStartOfLoop - returns the node where a list loops back onto itself (or null if it doesn't) - O(N)</li>
   </ul>
 </details>

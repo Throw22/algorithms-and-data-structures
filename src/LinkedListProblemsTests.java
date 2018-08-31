@@ -741,4 +741,66 @@ public class LinkedListProblemsTests {
 		
 		Assert.assertEquals(actual, expected);
 	}
+	
+	/* getStartOfLoop */
+	
+	@Test
+	public void getStartOfLoop_EmptyList_ReturnsNull() {
+		final LinkedListNode expected = null;
+		
+		final LinkedList test = new LinkedList();		
+		
+		final LinkedListNode actual = LinkedListProblems.getStartOfLoop(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getStartOfLoop_ListWithoutLoop_ReturnsNull() {
+		final LinkedListNode expected = null;
+		
+		final LinkedList test = new LinkedList();		
+		test.add(1);
+		test.add(2);
+		test.add(3);
+		
+		final LinkedListNode actual = LinkedListProblems.getStartOfLoop(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getStartOfLoop_LoopAtStart_ReturnsStartOfLoop() {		
+		final LinkedListNode expected = new LinkedListNode(1);
+
+		final LinkedList test = new LinkedList();		
+		test.add(expected);
+		test.add(2);
+		test.add(3);
+		test.add(expected);
+		
+		final LinkedListNode actual = LinkedListProblems.getStartOfLoop(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
+	
+	@Test
+	public void getStartOfLoop_LoopInMiddle_ReturnsStartOfLoop() {		
+		final LinkedListNode expected = new LinkedListNode(4);
+
+		final LinkedList test = new LinkedList();		
+		test.add(1);
+		test.add(2);
+		test.add(3);
+		test.add(expected);
+		test.add(5);
+		test.add(6);
+		final LinkedListNode last = new LinkedListNode(7);
+		test.add(last);
+		last.next = expected;
+		
+		final LinkedListNode actual = LinkedListProblems.getStartOfLoop(test);
+		
+		Assert.assertEquals(actual, expected);
+	}
 }
